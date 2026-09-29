@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discover ND — Undergraduate Research — University of Notre Dame</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+
+      /* Brand */
+      --brand-blue: #0c2340;
+      --brand-blue-light: #143865;
+      --brand-blue-bright: #1c4f8f;
+      --brand-blue-dark: #081629;
+      --brand-gold: #ae9142;
+      --brand-gold-light: #ddc278;
+      --brand-gold-bright: #d39f10;
+      --brand-gold-dark: #8c7535;
+
+      /* Neutrals */
+      --warm-white: #f8f4ec;
+      --warm-white-dark: #efe9d9;
+      --gray: #555;
+      --gray-dark: #333;
+      --gray-light: #d6dadf;
+      --gray-extra-light: #e9ebee;
+      --gray-extra-extra-light: #f1f2f4;
+      --sky-blue: #e1e8f2;
+      --sky-blue-light: #edf2f9;
+      --sky-blue-dark: #c1cddd;
+
+      /* Functional */
+      --link-blue: #0a67bc;
+      --link-focus: #15a6b5;
+
+      /* Type */
+      --font-default: GP, "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
+      --font-heading: Garamond-Pro, "Adobe Garamond", Garamond, Georgia, "Times New Roman", Times, serif;
+
+      /* Spacing */
+      --grid-gap-xs: 0.5rem;
+      --grid-gap-sm: 1.25rem;
+      --grid-gap: 1.75rem;
+      --grid-gap-lg: 2.5rem;
+      --grid-gap-xl: 5rem;
+
+      /* Surfaces */
+      --border-radius: 4px;
+      --border-primary: 1px solid rgba(0,0,0,.12);
+
+      /* Animation */
+      --anim-duration-fast: 125ms;
+      --anim-duration: 325ms;
+      --anim-ease: ease-in-out;
+    }
+
+    @media (min-width: 80em) {
+      :root {
+        --grid-gap-xs: 1rem;
+        --grid-gap-sm: 2.25rem;
+        --grid-gap: 2.75rem;
+        --grid-gap-lg: 4.5rem;
+        --grid-gap-xl: 10rem;
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      background-color: #fff;
+      color: var(--gray);
+      font-family: var(--font-default);
+      font-size: clamp(1rem, 0.15vw + 1rem, 1.125rem);
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      line-height: 1.75;
+      margin: 0;
+      min-height: 100dvh;
+    }
+
+    .wrapper {
+      border-top: 3px solid var(--brand-gold);
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      min-height: 100dvh;
+    }
+
+    /* ---------- Headings ---------- */
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--brand-blue);
+      font-weight: 300;
+      letter-spacing: 0;
+      line-height: 1.15;
+      margin-block: 0.25em 0.75em;
+      text-rendering: optimizeLegibility;
+    }
+    h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 3.5vw + 1rem, 4.25rem);
+      margin-block-end: 0.25em;
+    }
+    h2, h3 {
+      font-family: var(--font-default);
+      font-weight: 300;
+      line-height: 1.35;
+    }
+    h2 { font-size: clamp(1.75rem, 1.15vw + 1rem, 2.125rem); }
+    h3 { font-size: clamp(1.325rem, 0.7vw + 1rem, 1.5rem); }
+
+    a {
+      color: var(--link-blue);
+      text-underline-offset: 0.25em;
+    }
+    a:hover { text-decoration-color: var(--sky-blue); }
+    a:focus { outline: thin dotted; }
+
+    .page-label {
+      color: var(--gray);
+      font-family: var(--font-default);
+      font-size: clamp(0.85rem, 0.5vw + 0.5rem, 1rem);
+      letter-spacing: 0.1em;
+      margin-block-end: 1.25em;
+      text-transform: uppercase;
+    }
+
+    .page-lede {
+      color: var(--gray-dark);
+      font-size: clamp(1.125rem, 0.35vw + 1rem, 1.3rem);
+      margin-block-end: 2rem;
+      max-width: 50rem;
+      text-wrap: pretty;
+    }
+
+    /* ---------- Header ---------- */
+    .site-header {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      padding: 2rem 5vw;
+    }
+    .site-header .ndmark img {
+      display: block;
+      height: 48px;
+      width: auto;
+    }
+    .nav-primary ul {
+      display: flex;
+      gap: 0.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-primary a {
+      color: var(--brand-blue);
+      display: block;
+      padding: 0.75rem 1rem;
+      text-decoration: none;
+      transition: all var(--anim-duration) var(--anim-ease);
+      position: relative;
+    }
+    .nav-primary a::after {
+      border-bottom: 1px solid var(--brand-gold);
+      bottom: 0.25rem;
+      content: "";
+      display: block;
+      left: 1rem;
+      opacity: 0;
+      position: absolute;
+      right: 1rem;
+      transition: all var(--anim-duration) var(--anim-ease);
+    }
+    .nav-primary a:hover::after,
+    .nav-primary a:focus::after { opacity: 1; }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      background: linear-gradient(135deg, var(--brand-blue) 0%, var(--brand-blue-light) 100%);
+      color: #fff;
+      padding: 6rem 5vw 7rem;
+      position: relative;
+    }
+    .hero h1, .hero .page-label, .hero .page-lede {
+      color: #fff;
+    }
+    .hero .page-label { color: var(--sky-blue); }
+    .hero .page-lede { color: var(--sky-blue-light); }
+    .hero h1 {
+      max-width: 22ch;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    /* ---------- Buttons ---------- */
+    .btn {
+      background-color: transparent;
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 2rem;
+      color: #fff;
+      display: inline-block;
+      font-family: var(--font-default);
+      font-size: 1rem;
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      line-height: 1.4;
+      padding: 0.75em 2em 0.825em;
+      text-align: center;
+      text-decoration: none;
+      transition: all var(--anim-duration-fast) var(--anim-ease);
+    }
+    .btn:hover, .btn:focus {
+      background-color: rgba(255,255,255,0.1);
+      transform: scale(1.06);
+    }
+    .btn--cta {
+      background-color: #fff;
+      border-color: transparent;
+      color: var(--brand-blue);
+    }
+    .btn--cta:hover, .btn--cta:focus {
+      background-color: var(--sky-blue-light);
+    }
+
+    /* ---------- Stats section ---------- */
+    .section {
+      padding: 5rem 5vw;
+    }
+    .section--stats {
+      background-color: var(--warm-white);
+    }
+    .stats-grid {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: 1fr;
+      margin: 0 auto;
+      max-width: 80rem;
+    }
+    @media (min-width: 48em) {
+      .stats-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .stat-item {
+      border-top: 3px solid var(--brand-gold-bright);
+      padding-top: 1.5rem;
+    }
+    .stat-value {
+      color: var(--brand-blue);
+      display: block;
+      font-family: var(--font-heading);
+      font-size: clamp(3rem, 4vw + 1rem, 5rem);
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      line-height: 1.1;
+    }
+    .stat-label {
+      color: var(--gray);
+      display: block;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+      max-width: 18em;
+    }
+
+    /* ---------- Apply section ---------- */
+    .section--apply {
+      background-color: #fff;
+    }
+    .section-inner {
+      margin: 0 auto;
+      max-width: 80rem;
+    }
+    .section-intro {
+      max-width: 50rem;
+      margin-bottom: 3rem;
+    }
+    .steps {
+      counter-reset: step-counter;
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: 1fr;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    @media (min-width: 60em) {
+      .steps { grid-template-columns: repeat(3, 1fr); }
+    }
+    .steps li {
+      counter-increment: step-counter;
+      padding-left: 4rem;
+      position: relative;
+    }
+    .steps li::before {
+      align-items: center;
+      border: 1px solid var(--brand-gold);
+      border-radius: 50%;
+      color: var(--brand-blue);
+      content: counter(step-counter);
+      display: flex;
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      height: 3rem;
+      justify-content: center;
+      left: 0;
+      line-height: 1;
+      position: absolute;
+      top: 0;
+      width: 3rem;
+    }
+    .steps h3 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+    .steps p { margin: 0; }
+
+    .apply-cta {
+      margin-top: 3rem;
+    }
+    .btn--dark {
+      background-color: var(--brand-blue);
+      border-color: transparent;
+      color: #fff;
+    }
+    .btn--dark:hover, .btn--dark:focus {
+      background-color: var(--brand-blue-dark);
+    }
+
+    /* ---------- Footer ---------- */
+    .site-footer {
+      background-color: var(--brand-blue);
+      color: #fff;
+      padding: 3rem 5vw 2rem;
+    }
+    .site-footer a, .site-footer p { color: #fff; }
+    .footer-grid {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: 1fr;
+      margin: 0 auto;
+      max-width: 80rem;
+    }
+    @media (min-width: 60em) {
+      .footer-grid {
+        grid-template-columns: 2fr 1fr 1fr;
+      }
+    }
+    .footer-org h2 {
+      color: #fff;
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 300;
+      margin: 0.3em 0 0.5em;
+    }
+    .footer-org address {
+      font-style: normal;
+      margin-block-end: 1rem;
+    }
+    .footer-links h3 {
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .footer-links ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .footer-links li { margin-bottom: 0.5rem; }
+    .footer-links a {
+      color: var(--sky-blue);
+      text-decoration: underline;
+      text-decoration-color: rgba(255,255,255,0.2);
+    }
+    .footer-links a:hover {
+      color: #fff;
+      text-decoration-color: rgba(255,255,255,0.5);
+    }
+    .footer-global {
+      border-top: 1px solid rgba(255,255,255,0.2);
+      color: var(--sky-blue-dark);
+      font-size: 0.9rem;
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <header class="site-header">
+      <a href="/" class="ndmark" aria-label="University of Notre Dame">
+        <img src="https://static.nd.edu/images/marks/blue/ndmark.svg"
+             alt="University of Notre Dame"
+             width="200" height="48">
+      </a>
+      <nav class="nav-primary" aria-label="Primary">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#opportunities">Opportunities</a></li>
+          <li><a href="#apply">Apply</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <p class="page-label">Undergraduate Research at Notre Dame</p>
+      <h1>Discover ND</h1>
+      <p class="page-lede">An umbrella program connecting undergraduates to faculty research across every college at Notre Dame.</p>
+      <div class="hero-actions">
+        <a href="#apply" class="btn btn--cta">Apply for a placement</a>
+        <a href="#opportunities" class="btn">Browse open projects</a>
+      </div>
+    </section>
+
+    <section class="section section--stats" aria-label="Program impact">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="stat-value">1,200</span>
+          <span class="stat-label">Undergraduates placed in research positions last year</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">89</span>
+          <span class="stat-label">Participating faculty across nine schools and colleges</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">$4.2M</span>
+          <span class="stat-label">In funded research that included undergraduate contributors</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--apply" id="apply">
+      <div class="section-inner">
+        <div class="section-intro">
+          <p class="page-label">How to Apply</p>
+          <h2>Three steps to your first placement</h2>
+          <p>Discover ND matches students with faculty by interest, skill, and timing. Most placements begin in the fall or spring semester following application.</p>
+        </div>
+        <ol class="steps">
+          <li>
+            <h3>Browse projects</h3>
+            <p>Open opportunities are posted by faculty across every college. Filter by department, time commitment, or stipend availability.</p>
+          </li>
+          <li>
+            <h3>Submit one application</h3>
+            <p>A single application sends your interest to up to three projects. Include a short statement of interest and a current transcript.</p>
+          </li>
+          <li>
+            <h3>Meet your faculty mentor</h3>
+            <p>Faculty review applications and reach out to schedule conversations. Placements are confirmed within four weeks of submission.</p>
+          </li>
+        </ol>
+        <div class="apply-cta">
+          <a href="#" class="btn btn--dark">Begin your application</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div class="footer-org">
+          <h2>Discover ND</h2>
+          <address>
+            Office of Undergraduate Studies<br>
+            300 Main Building<br>
+            Notre Dame, IN 46556
+          </address>
+          <p><a href="mailto:discover@nd.edu">discover@nd.edu</a></p>
+        </div>
+        <div class="footer-links">
+          <h3>For Students</h3>
+          <ul>
+            <li><a href="#">Browse opportunities</a></li>
+            <li><a href="#">Application guide</a></li>
+            <li><a href="#">Funding &amp; stipends</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h3>For Faculty</h3>
+          <ul>
+            <li><a href="#">Post a project</a></li>
+            <li><a href="#">Mentor resources</a></li>
+            <li><a href="#">Program contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-global">
+        <p>© 2026 University of Notre Dame</p>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>

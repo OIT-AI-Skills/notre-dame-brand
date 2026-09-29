@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notre Dame Faculty AI Symposium — April 15</title>
+  <style>
+    /* ============================================================
+       ND Faculty AI Symposium — One-page flyer
+       Designed to display on screen and print clean as US Letter.
+       ============================================================ */
+
+    :root {
+      --brand-blue: #0c2340;
+      --brand-blue-light: #143865;
+      --brand-blue-dark: #081629;
+      --brand-gold: #ae9142;
+      --brand-gold-bright: #d39f10;
+      --warm-white: #f8f4ec;
+      --light-warm-white: #f8f4ec;
+      --gray: #555;
+      --gray-dark: #333;
+      --gray-light: #d6dadf;
+      --sky-blue: #e1e8f2;
+
+      --font-default: "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
+      --font-heading: "Adobe Garamond", Garamond, Georgia, "Times New Roman", Times, serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body {
+      background: #e9ebee;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      color: var(--gray-dark);
+      font-family: var(--font-default);
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      line-height: 1.7;
+    }
+
+    /* The flyer itself — sized to US Letter, centered for screen view */
+    .flyer {
+      background: var(--warm-white);
+      border-top: 4px solid var(--brand-gold);
+      box-shadow: 0 2px 24px rgba(0,0,0,0.12);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      height: 11in;
+      margin: 2rem auto;
+      padding: 0.75in 0.85in;
+      width: 8.5in;
+    }
+
+    /* Top row: small brand line + page label */
+    .flyer-header {
+      align-items: flex-start;
+      display: flex;
+      justify-content: space-between;
+    }
+    .flyer-header .ndmark img {
+      display: block;
+      height: 38px;
+      width: auto;
+    }
+    .flyer-header .label {
+      color: var(--brand-blue);
+      font-family: var(--font-default);
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      margin: 0;
+      padding-top: 0.5rem;
+      text-align: right;
+      text-transform: uppercase;
+    }
+    .flyer-header .label strong {
+      color: var(--brand-gold-bright);
+      display: block;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      margin-bottom: 0.15em;
+    }
+
+    /* The focal middle: event name dominates */
+    .flyer-body {
+      align-content: center;
+      display: grid;
+      gap: 1.5rem;
+      padding-block: 1.5rem;
+    }
+
+    .event-eyebrow {
+      color: var(--brand-blue);
+      font-family: var(--font-default);
+      font-size: 0.82rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      margin: 0;
+      text-transform: uppercase;
+    }
+
+    .event-name {
+      color: var(--brand-blue);
+      font-family: var(--font-heading);
+      font-size: 4.2rem;
+      font-weight: 300;
+      letter-spacing: -0.005em;
+      line-height: 1.05;
+      margin: 0;
+      max-width: 14ch;
+      text-wrap: balance;
+    }
+
+    .event-rule {
+      background: var(--brand-gold-bright);
+      border: 0;
+      height: 2px;
+      margin: 0.5rem 0 0.25rem;
+      width: 4rem;
+    }
+
+    .event-summary {
+      color: var(--gray-dark);
+      font-size: 1.1rem;
+      line-height: 1.55;
+      margin: 0;
+      max-width: 38em;
+    }
+
+    /* Detail grid: when / where / lunch */
+    .event-details {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 1.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--gray-light);
+    }
+    .detail-item {
+      display: grid;
+      gap: 0.25rem;
+    }
+    .detail-label {
+      color: var(--brand-blue);
+      font-family: var(--font-default);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .detail-value {
+      color: var(--gray-dark);
+      font-family: var(--font-heading);
+      font-size: 1.45rem;
+      font-weight: 300;
+      line-height: 1.2;
+    }
+    .detail-value small {
+      color: var(--gray);
+      display: block;
+      font-family: var(--font-default);
+      font-size: 0.95rem;
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      margin-top: 0.25em;
+    }
+
+    /* Speakers row */
+    .event-speakers {
+      margin-top: 1.5rem;
+    }
+    .speakers-label {
+      color: var(--brand-blue);
+      font-family: var(--font-default);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      margin: 0 0 0.5rem;
+      text-transform: uppercase;
+    }
+    .speakers-line {
+      color: var(--gray-dark);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Footer band: RSVP and contact */
+    .flyer-footer {
+      align-items: end;
+      border-top: 1px solid var(--gray-light);
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: 1fr auto;
+      padding-top: 1.25rem;
+    }
+    .rsvp-block .rsvp-label {
+      color: var(--brand-blue);
+      font-family: var(--font-default);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      margin: 0 0 0.4rem;
+      text-transform: uppercase;
+    }
+    .rsvp-block .rsvp-cta {
+      color: var(--brand-blue);
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 300;
+      line-height: 1.2;
+      margin: 0;
+    }
+    .rsvp-block .rsvp-cta a {
+      color: var(--brand-blue);
+      text-decoration-color: var(--brand-gold-bright);
+      text-decoration-thickness: 2px;
+      text-underline-offset: 0.18em;
+    }
+    .rsvp-block .rsvp-meta {
+      color: var(--gray);
+      font-size: 0.85rem;
+      margin: 0.4rem 0 0;
+    }
+    .org-block {
+      color: var(--gray);
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      line-height: 1.5;
+      text-align: right;
+    }
+    .org-block strong {
+      color: var(--brand-blue);
+      display: block;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    /* ---------- Print ---------- */
+    @page {
+      size: letter;
+      margin: 0;
+    }
+    @media print {
+      html, body { background: #fff; }
+      .flyer {
+        box-shadow: none;
+        height: 11in;
+        margin: 0;
+        page-break-after: avoid;
+        width: 8.5in;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <article class="flyer">
+
+    <header class="flyer-header">
+      <a href="https://www.nd.edu/" class="ndmark" aria-label="University of Notre Dame">
+        <img src="https://static.nd.edu/images/marks/blue/ndmark.svg"
+             alt="University of Notre Dame"
+             width="160" height="38">
+      </a>
+      <p class="label">
+        <strong>Save the Date</strong>
+        Office of the Provost
+      </p>
+    </header>
+
+    <main class="flyer-body">
+      <p class="event-eyebrow">Faculty Symposium · 2026</p>
+      <h1 class="event-name">Notre Dame Faculty AI Symposium</h1>
+      <hr class="event-rule">
+      <p class="event-summary">A one-day gathering for Notre Dame faculty and senior administrators on the future of artificial intelligence in research, teaching, and University operations. Speakers from across campus will share work in progress and open questions for the year ahead.</p>
+
+      <div class="event-details">
+        <div class="detail-item">
+          <span class="detail-label">When</span>
+          <span class="detail-value">April 15, 2026<small>9:00 a.m. – 4:30 p.m.</small></span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Where</span>
+          <span class="detail-value">Hesburgh Library<small>Carey Auditorium, Lower Level</small></span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Includes</span>
+          <span class="detail-value">Lunch &amp; Reception<small>Provided to all registered attendees</small></span>
+        </div>
+      </div>
+
+      <div class="event-speakers">
+        <p class="speakers-label">Speakers from across campus</p>
+        <p class="speakers-line">Faculty from the College of Engineering, the College of Science, the Mendoza College of Business, the Keough School of Global Affairs, and the College of Arts &amp; Letters. Full program announced two weeks before the event.</p>
+      </div>
+    </main>
+
+    <footer class="flyer-footer">
+      <div class="rsvp-block">
+        <p class="rsvp-label">RSVP Required</p>
+        <p class="rsvp-cta"><a href="https://events.nd.edu/ai-symposium-2026">events.nd.edu/ai-symposium-2026</a></p>
+        <p class="rsvp-meta">Registration closes Friday, April 4. Seating is limited.</p>
+      </div>
+      <div class="org-block">
+        <strong>Hosted by</strong>
+        Office of the Provost<br>
+        and the Office of Information Technology<br>
+        provost@nd.edu · 574-631-0000
+      </div>
+    </footer>
+
+  </article>
+
+</body>
+</html>
