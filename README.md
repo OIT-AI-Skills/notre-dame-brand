@@ -1,6 +1,8 @@
 # notre-dame-brand
 
-An Anthropic Skill that applies University of Notre Dame masterbrand standards — colors, typography, logos, and voice — to any visual or written deliverable connected to the University. For web pages and software UI it hands off to the `nd-web-theme` skill.
+A portable agent skill that applies University of Notre Dame masterbrand standards — colors, typography, logos, and voice — to any visual or written deliverable connected to the University. For web pages and software UI it hands off to the `nd-web-theme` skill.
+
+It uses the open, folder-based skill format — a directory with a `SKILL.md` (YAML frontmatter + Markdown instructions) and optional reference files — so it works with any agent or AI tool that supports skills, regardless of model provider. For tools that don't, there's a single-file version you can paste into any chat or system prompt.
 
 Sourced from the official OnMessage guidelines (`onmessage.nd.edu`) and calibrated against the OnMessage template library (`onmessage.nd.edu/downloads/templates/`). Use it for slides, decks, posters, flyers, one-pagers, social graphics, signage, event materials, donor or alumni communications, diagrams, and reports for academic and administrative units (Keough, Mendoza, OIT, OPAC, ND Research, etc.).
 
@@ -61,31 +63,33 @@ If a piece carries all three, it reads as Notre Dame.
 
 ## How to install
 
-### Claude apps (claude.ai, desktop)
+The skill is just the folder `.github/skills/notre-dame-brand/`. Any agent that supports the `SKILL.md` format can use it; the steps are the same everywhere:
 
-Zip the `.github/skills/notre-dame-brand/` folder so that `SKILL.md` sits at the root of the archive, then upload it in Settings.
+1. **Copy (or symlink) the folder** into your tool's skills directory, keeping the folder name `notre-dame-brand`. Common locations:
 
-### Claude Code
+   | Scope | Typical path |
+   |---|---|
+   | Shared across agents (user-level) | `~/.agents/skills/notre-dame-brand/` |
+   | Tool-specific (user-level) | `~/.<tool>/skills/notre-dame-brand/` — check your tool's docs |
+   | Per-repository | `.github/skills/notre-dame-brand/` or `.agents/skills/notre-dame-brand/` in the repo you're working in |
 
-Copy or symlink the skill folder into your skills directory:
+   ```bash
+   cp -R .github/skills/notre-dame-brand ~/.agents/skills/notre-dame-brand
+   ```
 
-```bash
-cp -R .github/skills/notre-dame-brand ~/.claude/skills/notre-dame-brand
-```
+2. **Or upload it**, for hosted chat apps that accept skills as an upload: zip the folder so `SKILL.md` sits at the root of the archive and upload it through the app's skill settings.
 
-### GitHub Copilot / ChatGPT Codex
+3. **Start a new session.** The agent discovers the skill from its frontmatter `description` and loads `SKILL.md` — and then the reference files it links to — only when a request matches.
 
-Both read the same `SKILL.md` folder format. Copy `.github/skills/notre-dame-brand/` to `~/.copilot/skills/notre-dame-brand` or `~/.agents/skills/notre-dame-brand` respectively. (Copilot also discovers skills under `.github/skills/` in a repo you have open.)
-
-Claude detects the skill from its frontmatter `description` and loads the reference files on demand when a request matches.
+Many tools also discover skills in `.github/skills/` automatically when you have this repository open.
 
 ## Portable single-file version
 
-For Gemini, ChatGPT (without skills), or any agent that can't load folder-based skills, use the flattened file at the top of this repo:
+For any chat assistant, agent, or model that can't load folder-based skills, use the flattened file at the top of this repo:
 
 **[`notre-dame-brand-portable.md`](./notre-dame-brand-portable.md)**
 
-It merges `SKILL.md` and all four reference files into one self-contained document, with in-document anchor links replacing cross-file references. Paste the whole thing into the agent's system prompt or context window; it behaves the same way minus on-demand loading.
+It merges `SKILL.md` and all four reference files into one self-contained document, with in-document anchor links replacing cross-file references. Paste the whole thing into a system prompt, custom instructions, a project/knowledge file, or the start of a conversation; it behaves the same way minus on-demand loading.
 
 The portable file is **generated** — don't edit it by hand. After changing anything in the skill folder:
 

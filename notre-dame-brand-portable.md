@@ -1,6 +1,6 @@
 # Notre Dame Brand — Portable Skill
 
-> Single-file version of the `notre-dame-brand` skill for agents that can't load folder-based skills (Gemini, ChatGPT, Copilot chat, etc.). Paste the whole file into the system prompt or context window.
+> Single-file version of the `notre-dame-brand` skill for any AI assistant or agent that can't load folder-based skills. Paste the whole file into a system prompt, custom instructions, or the start of a conversation.
 >
 > **Generated file — do not edit by hand.** Source: `.github/skills/notre-dame-brand/`. Regenerate with `python3 scripts/build-portable.py`.
 
@@ -127,7 +127,7 @@ Full guidance is in [the Voice reference](#reference-voice).
 When the deliverable is a **web page, an nd.edu or Conductor site, a landing page, an HTML mockup meant to look like nd.edu, or a software/app UI**, this skill is not the right tool on its own. The University's web look is governed by the **Notre Dame Web Theme v4** and its component library, which the `nd-web-theme` skill covers in depth (theme components, foundation tokens, Conductor-ready HTML, and local previews).
 
 - **If `nd-web-theme` is available**, invoke it and follow it for layout, components, and CSS. Use this skill only for voice/copy and for confirming mark usage.
-- **If it isn't installed**, tell the user it exists and recommend installing it before continuing: it lives at **https://github.com/OIT-AI-Skills/nd-web-theme-conductor**. For Claude apps, zip the repository with `SKILL.md` at the archive root and upload it in Settings; for Claude Code, clone it into `~/.claude/skills/nd-web-theme`. Then invoke it.
+- **If it isn't installed**, tell the user it exists and recommend installing it before continuing: it lives at **https://github.com/OIT-AI-Skills/nd-web-theme-conductor** and installs like any folder-based skill (copy the folder into the agent's skills directory, or zip it with `SKILL.md` at the root and upload it to an app that accepts skills). Then invoke it.
 - If the user wants to proceed without it, build a clean light page (white background, ND Blue headings in sans, Bright Gold accents, Academic Mark in the header/footer, ND Blue footer) and say that the result approximates rather than implements the ND web theme.
 
 Do not hand-invent nd.edu component classes or theme CSS from this skill.
@@ -142,14 +142,14 @@ Do not hand-invent nd.edu component classes or theme CSS from this skill.
 
 ### Deliverable-specific guidance
 
-#### Presentations (Slides artifacts or .pptx)
+#### Presentations (slide decks, .pptx, Google Slides, Keynote)
 - **Title slide:** either a full-bleed campus photo with a large light-weight sans title and thin gold hairlines, or a solid ND Blue field with a bold condensed ALL-CAPS title framed by gold hairlines. Academic Mark small, bottom or corner.
 - **Section dividers:** ND Blue field, sans title, gold eyebrow label.
 - **Content slides:** white background, ND Blue sans title, gray (`#333`/`#555`) Arial body, gold for one focal data point, eyebrow label optional. Content slides should be light.
 - **People/speaker slides:** headshot in a circle or arch mask with a thin gold outline.
-- Consult the Slides artifact type or the `pptx` skill for mechanics, then apply the brand on top.
+- Use whatever slide tooling or presentation skill is available for the mechanics, then apply the brand on top.
 
-#### Documents and reports (Docs artifacts or .docx)
+#### Documents and reports (.docx, Google Docs, PDF)
 - White or Warm White page, ND Blue **sans** headings (Arial, bold or regular), dark gray Arial body.
 - Gold small-caps eyebrow labels above section titles; thin gold rules for section breaks.
 - Academic Mark top of page 1; optional ND Blue header band on the cover page only.

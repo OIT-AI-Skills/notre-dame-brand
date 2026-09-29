@@ -61,9 +61,9 @@ def build():
 
     parts = [
         "# Notre Dame Brand — Portable Skill\n",
-        "> Single-file version of the `notre-dame-brand` skill for agents that can't "
-        "load folder-based skills (Gemini, ChatGPT, Copilot chat, etc.). Paste the "
-        "whole file into the system prompt or context window.\n>\n"
+        "> Single-file version of the `notre-dame-brand` skill for any AI assistant "
+        "or agent that can't load folder-based skills. Paste the whole file into a "
+        "system prompt, custom instructions, or the start of a conversation.\n>\n"
         "> **Generated file — do not edit by hand.** Source: "
         "`.github/skills/notre-dame-brand/`. Regenerate with "
         "`python3 scripts/build-portable.py`.\n",
